@@ -6,12 +6,21 @@ public class Main {
     public static void main(String[] args) {
         try {
             System.out.println("=== Задание 1: Итератор ===");
-            Function sin = new Sin();
-            TabulatedFunction arrayFunc = TabulatedFunctions.tabulate(sin, 0, Math.PI, 5);
+            System.out.println("Тест итератора ArrayTabulatedFunction:");
+            Function sin1 = new Sin();
+            TabulatedFunction arrayFunc = TabulatedFunctions.tabulate(sin1, 0, Math.PI, 5);
 
             System.out.println("Итерация по точкам (улучшенный цикл for):");
             for (FunctionPoint p : arrayFunc) {
                 System.out.println(p);
+            }
+
+            // Тест итератора для LinkedListTabulatedFunction
+            System.out.println("\nТест итератора LinkedListTabulatedFunction:");
+            Function sin2 = new Sin();
+            TabulatedFunction linkedFunc = TabulatedFunctions.tabulate(sin2, 0, Math.PI, 5);
+            for (FunctionPoint point : linkedFunc) {
+                System.out.println(point);
             }
 
             System.out.println("\n=== Задание 2: Фабрики ===");

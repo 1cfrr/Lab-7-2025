@@ -392,26 +392,25 @@ public class LinkedListTabulatedFunction implements TabulatedFunction, Externali
     @Override
     public Iterator<FunctionPoint> iterator() {
         return new Iterator<FunctionPoint>() {
-            private FunctionNode currentNode = head;
-            private  int counter = 0;
+            private FunctionNode currentNode = head.next;
+            private boolean firstReturned = false;
+
             @Override
             public boolean hasNext() {
-                return counter<pointsCount;
+                return currentNode != head;
             }
 
             @Override
             public FunctionPoint next() {
-                if(!hasNext()){
-                    throw  new java.util.NoSuchElementException("Нет следующего элемента");
+                if (!hasNext()) {
+                    throw new java.util.NoSuchElementException("Нет следующего элемента");
                 }
-                FunctionPoint p = currentNode.point;
+                FunctionPoint point = currentNode.point;
                 currentNode = currentNode.next;
-                counter++;
-
-                return new FunctionPoint(p.getX(),p.getY());
+                return new FunctionPoint(point);
             }
 
-            public void remove(){
+            public void remove() {
                 throw new UnsupportedOperationException("Удаление не поддерживается");
             }
         };
